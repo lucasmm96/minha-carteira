@@ -1,4 +1,4 @@
-# Métricas de ranking
+# Ranking
 
 ## FII
 
