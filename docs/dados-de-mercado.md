@@ -12,119 +12,79 @@ Dados de mercado representam informações externas sobre ativos financeiros, se
 
 * preço atual do ativo
 
-Esses dados são utilizados para cálculo de valor atual e valorização da carteira.
-
 ## Fonte de Dados
 
-O sistema deve utilizar:
-
-* Yahoo Finance como fonte principal de dados
-
-Regras:
-
-* A integração deve ser desacoplada (abstraída), permitindo substituição futura da fonte
-* O sistema não deve depender de uma única implementação rígida
+* Yahoo Finance
 
 ## Escopo de Dados
 
-O sistema deve:
-
-* permitir acesso a todos os ativos disponíveis na bolsa brasileira
-* realizar busca de ativos sob demanda via API
+* acesso a todos ativos
+* busca sob demanda
 
 ## Dados Necessários
 
-Para cada ativo, o sistema deve obter:
+### Dados em tempo real
 
 * preço atual
 
-Nenhum outro dado é obrigatório neste módulo.
+### Dados históricos (OBRIGATÓRIO)
+
+O sistema deve suportar consulta de dados históricos de preço.
+
+#### Regras:
+
+* Deve permitir acesso a preços passados (mínimo necessário para cálculo de crescimento)
+* Deve suportar pelo menos:
+
+  * preço atual
+  * preço de 3 anos atrás (para ranking de FIIs)
+* Pode utilizar dados históricos da API do Yahoo Finance
 
 ## Frequência de Atualização
 
-A atualização deve ser feita utilizando polling.
-
-### Definição de Polling
-
-Polling consiste em realizar requisições periódicas para obter dados atualizados.
-
+* polling a cada 10 segundos
 ### Regras de Atualização
-
-* Intervalo: a cada 10 segundos
 * A atualização deve ocorrer apenas quando:
-
   * o usuário estiver em uma tela que utiliza dados de mercado
 * A atualização deve ser interrompida quando não houver necessidade
 
 ## Tipo de Atualização
 
-* A atualização deve ser feita apenas para ativos visíveis na interface
-* Não deve atualizar ativos fora do contexto atual do usuário
+* apenas ativos visíveis
 
 ## Horário de Mercado
 
-O sistema deve considerar o horário oficial da B3.
-
-### Regras:
-
-* Quando o mercado estiver aberto:
-
-  * dados devem ser atualizados continuamente (polling ativo)
-* Quando o mercado estiver fechado:
-
-  * a atualização deve ser interrompida
-  * o sistema deve indicar que os dados não estão sendo atualizados
-  * deve exibir o horário da última atualização
+* seguir horário da B3
 
 ## Cache
 
-O sistema deve utilizar cache para dados de mercado.
+* TTL: 10 segundos
 
-### Regras:
+## Histórico de Preços (Local)
 
-* TTL (tempo de vida): 10 segundos
-* O cache deve ser invalidado automaticamente após o TTL
-* Durante o TTL, o sistema deve reutilizar os dados armazenados
-
-## Histórico de Preços
-
-O sistema deve manter um histórico local simples de preços.
-
-### Regras:
-
-* armazenar últimos valores recentes
-* não é necessário histórico completo (time series)
-* objetivo: suporte a fallback e estabilidade
+* manter histórico simples
+* objetivo: fallback
 
 ## Fallback
 
-Quando não for possível obter dados atualizados:
-
-* utilizar o último valor disponível
-* indicar discretamente que o dado pode estar desatualizado
+* usar último valor
 
 ## Tratamento de Erros
 
-Em caso de falha na API:
-
-* não realizar retry imediato
-* tentar novamente no próximo ciclo de polling
-* exibir indicador discreto de erro
+* retry no próximo ciclo
 
 ## Precisão
 
-* Os valores devem ser armazenados com precisão máxima retornada pela API
-* O arredondamento deve ocorrer apenas na exibição (2 casas decimais)
+* precisão máxima interna
+* arredondamento só na UI
 
-## Comportamento Esperado (IA)
-
-A IA deve:
+## Comportamento da IA
 
 * utilizar dados atualizados sempre que disponíveis
 * respeitar o cache e o TTL
 * não ignorar falhas silenciosamente
 * utilizar fallback quando necessário
-* não inventar valores de mercado
+* não inventar dados
 
 ## Restrições
 
@@ -135,10 +95,4 @@ A IA deve:
 
 ## Observações
 
-Este documento é dependência direta de:
-
-* carteira.md → cálculo de valor atual e valorização
-
-Este documento define exclusivamente a obtenção e atualização de dados externos.
-
-Deve ser tratado como fonte única de verdade para preços de ativos.
+* necessário para carteira.md e ranking.md

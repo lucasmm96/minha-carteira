@@ -48,8 +48,6 @@ Para cada ativo, o sistema deve calcular:
 
 ## Cálculo de Quantidade
 
-A quantidade atual deve ser calculada com base em movimentacoes.md:
-
 ```id="quantidade_calc"
 quantidade = soma(compras) - soma(vendas)
 ```
@@ -60,16 +58,15 @@ O preço médio deve seguir exatamente as regras definidas em movimentacoes.md.
 
 ## Cálculo de Valor Investido
 
-O valor investido deve ser:
-
 ```id="investido_calc"
 valor_investido = soma(compras) - soma(vendas)
 ```
 
-Observação:
+### Observação Importante
 
 * Este valor representa o capital atualmente alocado no ativo
-* Não representa custo histórico total
+* NÃO representa o custo histórico total investido
+* NÃO deve ser interpretado como custo médio clássico de mercado
 
 ## Preço Atual
 
