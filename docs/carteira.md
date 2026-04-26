@@ -44,7 +44,6 @@ Para cada ativo, o sistema deve calcular:
 * valor atual
 * valorizacao (R$)
 * valorizacao (%)
-* total de proventos acumulados
 
 ## Cálculo de Quantidade
 
@@ -70,16 +69,7 @@ valor_investido = soma(compras) - soma(vendas)
 
 ## Preço Atual
 
-O preço atual deve:
-
-* ser obtido de fonte externa (dados de mercado)
-* ser atualizado em tempo real quando o mercado estiver aberto
-* parar de atualizar quando o mercado estiver fechado
-
-O sistema deve:
-
-* indicar quando o mercado estiver fechado
-* exibir o horário da última atualização
+* Obtido via dados-de-mercado.md
 
 ## Cálculo de Valor Atual
 
@@ -101,21 +91,6 @@ valorizacao = valor_atual - valor_investido
 valorizacao_percentual = (valorizacao / valor_investido) * 100
 ```
 
-## Proventos
-
-O sistema deve:
-
-* calcular o total de proventos acumulados por ativo
-* considerar todos os proventos desde a primeira compra
-
-Regras:
-
-* proventos NÃO devem alterar:
-
-  * valor investido
-  * valorização
-* proventos devem ser exibidos apenas como informação adicional
-
 ## Consolidação da Carteira
 
 O sistema deve calcular:
@@ -125,40 +100,13 @@ O sistema deve calcular:
 * lucro/prejuízo total (R$)
 * lucro/prejuízo total (%)
 
-### Fórmulas
-
-```id="total_investido"
-total_investido = soma(valor_investido de todos os ativos)
-```
-
-```id="total_atual"
-total_atual = soma(valor_atual de todos os ativos)
-```
-
-```id="lucro_total"
-lucro_total = total_atual - total_investido
-```
-
-```id="lucro_percentual"
-lucro_percentual = (lucro_total / total_investido) * 100
-```
-
 ## Alocação
-
-O sistema deve calcular:
-
-### Por tipo
 
 * % em ações
 * % em FIIs
+* % por ativo
 
-### Por ativo
-
-* % de cada ativo na carteira
-
-### Base de cálculo
-
-Todas as proporções devem ser baseadas em:
+Base:
 
 ```id="base_alocacao"
 valor_atual
@@ -166,60 +114,41 @@ valor_atual
 
 ## Ordenação
 
-A ordenação padrão dos ativos deve ser:
-
-* por nome (ordem alfabética)
+* por nome (alfabética)
 
 ## Destaque de Ativos
 
-O sistema deve destacar ativos com base em:
-
-* maior valorização percentual (%)
+* baseado em valorização (%)
 
 ## Dados Faltantes
 
-Caso o preço atual não esteja disponível:
-
-* utilizar o último valor conhecido
-* indicar discretamente que o dado pode estar desatualizado
+* usar último valor disponível
+* indicar discretamente possível desatualização
 
 ## Precisão
-
-Todos os valores devem ser exibidos com:
 
 * 2 casas decimais
 
 ## Reprocessamento
 
-A carteira deve ser recalculada:
-
-* sempre do zero
-* com base nas movimentações ordenadas
+* sempre recalcular do zero
 
 ## Comportamento Esperado (IA)
 
-A IA deve:
-
-* recalcular todos os valores corretamente
 * não armazenar dados derivados
-* respeitar todas as fórmulas
-* não incluir proventos na valorização
-* não inferir dados não definidos
+* respeitar fórmulas
+* não inferir dados
 
 ## Restrições
 
-* Não armazenar dados calculados
-* Não misturar proventos com valorização
-* Não utilizar valores fora das regras definidas
-* Não alterar lógica de cálculo
+* não armazenar dados calculados
+* não alterar lógica
 
 ## Observações
 
-Este documento depende diretamente de:
+Dependências:
 
-* movimentacoes.md → origem dos dados
-* dados-de-mercado.md → preço atual
+* movimentacoes.md
+* dados-de-mercado.md
 
 Este documento define exclusivamente o estado atual da carteira.
-
-Deve ser tratado como fonte única de verdade para cálculos de posição e valorização.
