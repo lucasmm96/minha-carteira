@@ -205,8 +205,12 @@ A IA deve:
 
 ## Observações
 
-Este ranking é uma aproximação do modelo utilizado por plataformas como Status Invest, adaptado às limitações da API do Yahoo Finance.
+* Este ranking é uma aproximação do modelo utilizado por plataformas como Status Invest, adaptado às limitações da API do Yahoo Finance.
+* Ele deve ser interpretado como ferramenta de apoio e não como decisão final.
+* Este documento deve ser considerado a fonte única de verdade para classificação de ativos.
 
-Ele deve ser interpretado como ferramenta de apoio e não como decisão final.
+## Limitações
 
-Este documento deve ser considerado a fonte única de verdade para classificação de ativos.
+* O ranking pode apresentar baixa precisão quando o número de ativos comparados for pequeno
+* Recomenda-se interpretar o ranking com cautela em carteiras com poucos ativos
+

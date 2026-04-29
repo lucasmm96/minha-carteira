@@ -85,8 +85,15 @@ O sistema deve permitir:
 
 ### Lista de Ativos
 
-* A lista de ativos deve ser obtida sob demanda via API
-* Não deve ser mantida uma lista local completa
+* O sistema NÃO deve manter uma lista completa de todos os ativos da bolsa
+* A busca de ativos deve ser feita sob demanda via API
+* O sistema deve persistir apenas os ativos selecionados pelo usuário
+* Cada usuário possui sua própria lista de ativos persistidos
+
+### Persistência
+
+* Ativos adicionados pelo usuário devem ser armazenados no banco de dados
+* Ativos não adicionados não devem ser persistidos
 
 ## Validação
 

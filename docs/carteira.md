@@ -151,4 +151,10 @@ Dependências:
 * movimentacoes.md
 * dados-de-mercado.md
 
-Este documento define exclusivamente o estado atual da carteira.
+
+## Performance
+
+* O sistema deve recalcular a carteira do zero a cada atualização
+* Esta abordagem prioriza consistência sobre performance
+* Pode ser otimizada futuramente com técnicas de cache ou memoização, se necessário
+

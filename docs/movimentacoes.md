@@ -25,7 +25,7 @@ Cada movimentação deve conter obrigatoriamente:
 
 * data: data da operação (formato YYYY-MM-DD)
 * tipo: "compra" ou "venda"
-* ativo: identificador do ativo (ex: ITSA4, SAPR4F, VGIR11)
+* ativo_id: identificador interno do ativo (referência ao banco de dados)
 * descricao: nome descritivo do ativo
 * preco_unitario: valor unitário do ativo no momento da operação
 * quantidade: número inteiro de unidades negociadas
@@ -36,9 +36,10 @@ Cada movimentação deve conter obrigatoriamente:
 * Quantidade deve ser sempre um número inteiro positivo
 * Preço unitário deve ser um número positivo
 * Movimentações devem ser ordenadas por:
-
   1. data (ascendente)
   2. ordem de inserção (em caso de empate)
+* Toda movimentação deve referenciar um ativo via ativo_id
+* Dados como ticker e nome devem ser obtidos via relacionamento com o ativo
 
 ## Regras de Compra
 

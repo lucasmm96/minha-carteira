@@ -29,7 +29,8 @@ Dados de mercado representam informações externas sobre ativos financeiros, se
 
 ### Dados históricos (OBRIGATÓRIO)
 
-O sistema deve suportar consulta de dados históricos de preço.
+* O sistema deve suportar consulta de dados históricos de preço.
+* preço de fechamento do dia anterior (obrigatório para cálculo de variação diária)
 
 #### Regras:
 
